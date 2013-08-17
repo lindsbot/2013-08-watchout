@@ -37,11 +37,20 @@ var dragFunction = d3.behavior.drag().on("drag", function(d){
   d.x += d3.event.dx;
   d.y += d3.event.dy;
 
+  // do we need to set attr("cx", function(d){---}) etc?
+
+
+
+
   //debugger;
   //d.y =
-  d3.select(this).attr("transform", function(d){
-    return "translate(" + [d.x,d.y]+ ")";
-  });
+  d3.select(this)
+    .attr("cx", function(d){
+      return d.x;
+    })
+    .attr("cy", function(d){
+      return d.y;
+    });
 });
 
 game.gameboard.selectAll("circle.enemy").data(game.initEnemies).enter()
