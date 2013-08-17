@@ -1,0 +1,15 @@
+body {
+  background-color: black;
+}
+
+.stage{
+  height: 600px;
+  width: 750px;
+  margin-top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: white;
+}
+.enemy {
+  fill: black;
+}
