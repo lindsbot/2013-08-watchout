@@ -1,5 +1,12 @@
 body {
   background-color: black;
+  font-family: sans-serif;
+}
+
+h1 {
+  font-size: 40pt;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .stage{
