@@ -9,6 +9,20 @@ game.gameboard = d3.select(".stage").append("svg")
 //increment score every x time
 //particles? aware of eachothers position/proximity
 
+// make score board
+
+/*
+
+on some interval, compare each enemy's position with the position of our player
+
+fire an event to reset score
+
+if no collisions, add to score, update scoreboard in view
+
+*/
+
+game.score = 0;
+
 game.initEnemies = function(){
   var enemyList = [];
 
@@ -57,6 +71,11 @@ game.gameboard.selectAll("circle.player").data([{x: 375, y : 250}]).enter()
   })
   .attr("r", 10)
  .call(dragFunction);
+
+setInterval(function(){
+  d3.selectAll(".scores").text("Score: " + game.score);
+  game.score++;
+}, 100);
 
 setInterval(function(){
   d3.selectAll(".enemy").transition().duration(1200)
