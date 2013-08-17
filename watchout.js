@@ -27,7 +27,20 @@ game.gameboard.selectAll("circle.enemy").data(game.enemies).enter()
   })
   .attr("r", 10);
 
-console.log(game.enemies);
+
+
+game.render = function(enemyList) {
+  //set the position attr to new random position
+  //animate to that position
+  enemyList.attr("cx", function(d){
+    return Math.random()*500; });
+
+};
+
+setInterval(function(){
+  d3.selectAll(".enemy").attr("cx", function(){return Math.random() * 500;}).attr("cy", function(){return Math.random() * 500;});
+}, 1000);
+//settimeout calls render function on all enemies
 
 
 //some function that works with d3 enter/"update"/exit
