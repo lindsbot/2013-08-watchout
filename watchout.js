@@ -25,6 +25,8 @@ game.score = 0;
 game.width = 750;
 game.height = 500;
 game.player = {};
+game.player.x = game.width/2;
+game.player.y = game.height/2;
 game.player.r = 10;
 game.collisionDetected = false;
 
@@ -34,6 +36,7 @@ game.initEnemies = function(){
   for (i = 0; i < 20; i++) {
     var enemy = {};
     enemy.id = i;
+    enemy.r = 10;
     enemy.x = Math.random() * game.width;
     enemy.y = Math.random() * game.height;
     enemyList.push(enemy);
@@ -65,7 +68,7 @@ game.gameboard.selectAll("circle.enemy").data(game.initEnemies).enter()
   })
   .attr("r", 10);
 
-game.gameboard.selectAll("circle.player").data([{x: game.width/2, y : game.height/2}]).enter()
+game.gameboard.selectAll("circle.player").data([game.player]).enter()
   .append("svg:circle")
   .attr("class", "player")
   .attr("cx", function(d){
@@ -78,21 +81,32 @@ game.gameboard.selectAll("circle.player").data([{x: game.width/2, y : game.heigh
  .call(game.dragFunction);
 
 game.collision = function() {
-  var bool = false;
-  var player = game.gameboard.selectAll("circle.player");
 
   game.gameboard.selectAll("circle.enemy").each(function(enemy){
     //must reference game.player
-    if (Math.abs((enemy.x - player.x) < 20) && Math.abs((enemy.y - player.y) < 20)){
+
+    var enemyX = d3.select(this).attr("cx");
+    var enemyY = d3.select(this).attr("cy");
+
+    var playerX = d3.selectAll(".player").attr("cx");
+    var playerY = d3.selectAll(".player").attr("cy");
+
+//    debugger;
+    var xDistance = Math.abs(enemyX - playerX);
+    var yDistance = Math.abs(enemyY - playerY);
+    var combinedRadius = enemy.r + game.player.r;
+
+    if ((xDistance < combinedRadius) && (yDistance < combinedRadius)){
       game.collisionDetected = true;
     }
   });
-  return bool;
 };
 
 setInterval(function(){
-  if( !!game.collision() ){
+  game.collision();
+  if(game.collisionDetected){
     game.score = 0;
+    game.collisionDetected = false;
   }
   d3.selectAll(".scores").text("Score: " + game.score);
   game.score++;
