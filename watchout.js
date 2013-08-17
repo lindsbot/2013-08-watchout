@@ -1,6 +1,6 @@
 var game = {};
 
-game.gameboard = d3.select(".stage").append("svg:svg").attr("width", 500).attr("height", 500);
+game.gameboard = d3.select(".stage").append("svg:svg").attr("width", 750).attr("height", 500);
 
 
 game.enemies = function(){
@@ -25,7 +25,7 @@ game.gameboard.selectAll("circle.enemy").data(game.enemies).enter()
   .attr("cy", function(d){
     return d.y;
   })
-  .attr("r", 20);
+  .attr("r", 10);
 
 console.log(game.enemies);
 
