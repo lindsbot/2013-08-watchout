@@ -22,6 +22,7 @@ if no collisions, add to score, update scoreboard in view
 */
 
 game.score = 0;
+game.highScore = 0;
 game.width = 750;
 game.height = 500;
 game.player = {};
@@ -66,7 +67,9 @@ game.gameboard.selectAll("circle.enemy").data(game.initEnemies).enter()
   .attr("cy", function(d){
     return d.y;
   })
-  .attr("r", 10);
+  .attr("r", function(d){
+    return d.r;
+  });
 
 game.gameboard.selectAll("circle.player").data([game.player]).enter()
   .append("svg:circle")
@@ -104,12 +107,16 @@ game.collision = function() {
 
 setInterval(function(){
   game.collision();
-  if(game.collisionDetected){
+  if (game.collisionDetected){
     game.score = 0;
     game.collisionDetected = false;
   }
   d3.selectAll(".scores").text("Score: " + game.score);
   game.score++;
+  if (game.score > game.highScore){
+    game.highScore = game.score;
+    d3.selectAll(".highScore").text("High Score: " + game.highScore);
+  }
 }, 100);
 
 setInterval(function(){
