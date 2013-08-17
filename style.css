@@ -14,3 +14,7 @@ body {
 .enemy {
   fill: black;
 }
+
+.player {
+  fill: orange;
+}

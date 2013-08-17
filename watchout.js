@@ -22,6 +22,18 @@ game.initEnemies = function(){
   return enemyList;
 }();
 
+// game.initPlayer = function() {
+//   var array = [];
+//   var player = {};
+//   player.x = 375;
+//   player.y = 250;
+//   return array.push(player);
+// }();
+
+var dragFunction = d3.behavior.drag().on("drag", function(){
+  console.log("hello!");
+});
+
 game.gameboard.selectAll("circle.enemy").data(game.initEnemies).enter()
   .append("svg:circle")
   .attr("class", "enemy")
@@ -32,6 +44,35 @@ game.gameboard.selectAll("circle.enemy").data(game.initEnemies).enter()
     return d.y;
   })
   .attr("r", 10);
+
+
+game.gameboard.selectAll("circle.test").data([{ id: "test"}]).enter()
+  .append("svg:circle")
+  .attr("class", "test");
+
+
+// select d3 player thing, .call(drag)
+
+game.gameboard.selectAll("circle.player").data([{x: 375, y : 250}]).enter()
+  .append("svg:circle")
+  .attr("class", "player")
+  .attr("cx", function(d){
+    return d.x;
+  })
+  .attr("cy", function(d){
+    return d.y;
+  })
+  .attr("r", 10)
+ .call(dragFunction);
+
+
+//add drag event to player piece
+//var drag = d3.behavior.drag().on("drag", function(player){
+//  console.log("i'm dragging now");
+// })
+
+
+
 
 setInterval(function(){
   d3.selectAll(".enemy").transition().duration(1200)
