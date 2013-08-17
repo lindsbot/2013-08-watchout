@@ -30,8 +30,18 @@ game.initEnemies = function(){
 //   return array.push(player);
 // }();
 
-var dragFunction = d3.behavior.drag().on("drag", function(){
-  console.log("hello!");
+var dragFunction = d3.behavior.drag().on("drag", function(d){
+  //debugger;
+  //var player = game.gameboard.selectAll(".player");
+  //player[0].mouse(".stage");
+  d.x += d3.event.dx;
+  d.y += d3.event.dy;
+
+  //debugger;
+  //d.y =
+  d3.select(this).attr("transform", function(d){
+    return "translate(" + [d.x,d.y]+ ")";
+  });
 });
 
 game.gameboard.selectAll("circle.enemy").data(game.initEnemies).enter()
