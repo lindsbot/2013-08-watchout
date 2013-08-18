@@ -3,24 +3,6 @@ var game = {};
 game.gameboard = d3.select(".stage").append("svg")
   .attr("width", 750).attr("height", 500);
 
-//make player
-//detect collisions > fire event
-//scoreboard reset on event
-//increment score every x time
-//particles? aware of eachothers position/proximity
-
-// make score board
-
-/*
-
-on some interval, compare each enemy's position with the position of our player
-
-fire an event to reset score
-
-if no collisions, add to score, update scoreboard in view
-
-*/
-
 game.score = 0;
 game.highScore = 0;
 game.width = 750;
@@ -94,7 +76,6 @@ game.collision = function() {
     var playerX = d3.selectAll(".player").attr("cx");
     var playerY = d3.selectAll(".player").attr("cy");
 
-//    debugger;
     var xDistance = Math.abs(enemyX - playerX);
     var yDistance = Math.abs(enemyY - playerY);
     var combinedRadius = enemy.r + game.player.r;
