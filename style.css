@@ -25,3 +25,19 @@ h1 {
 .player {
   fill: orange;
 }
+
+/*
+.stylie {
+  animation-name: stylie-transform-keyframes;
+  animation-duration: 2000ms;
+  animation-delay: 0ms;
+  animation-fill-mode: forwards;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  transform-origin: 0 0;
+}
+@keyframes stylie-transform-keyframes {
+  0% {transform:translate(960px, 491px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) translate(-50%, -50%);animation-timing-function: cubic-bezier(.25,.25,.75,.75);}
+  100% {transform:translate(960px, 491px) rotateX(0deg) rotateY(0deg) rotateZ(360deg) translate(-50%, -50%);}
+}
+*/
